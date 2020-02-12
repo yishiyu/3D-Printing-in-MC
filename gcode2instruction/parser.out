@@ -1,0 +1,230 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    t_ignore_COMMENTS
+
+Grammar
+
+Rule 0     S' -> instrucions
+Rule 1     instrucions -> instrucions instrucion
+Rule 2     instrucions -> instrucion instrucion
+Rule 3     instrucion -> G1 parameters
+Rule 4     instrucion -> G0 parameters
+Rule 5     parameters -> SPEED POSX POSY POSE
+Rule 6     parameters -> SPEED POSX POSY POSZ
+Rule 7     parameters -> SPEED POSX POSY
+Rule 8     parameters -> SPEED POSE
+Rule 9     parameters -> POSX POSY POSE
+Rule 10    parameters -> POSX POSY
+
+Terminals, with rules where they appear
+
+G0                   : 4
+G1                   : 3
+POSE                 : 5 8 9
+POSX                 : 5 6 7 9 10
+POSY                 : 5 6 7 9 10
+POSZ                 : 6
+SPEED                : 5 6 7 8
+error                : 
+t_ignore_COMMENTS    : 
+
+Nonterminals, with rules where they appear
+
+instrucion           : 1 2 2
+instrucions          : 1 0
+parameters           : 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . instrucions
+    (1) instrucions -> . instrucions instrucion
+    (2) instrucions -> . instrucion instrucion
+    (3) instrucion -> . G1 parameters
+    (4) instrucion -> . G0 parameters
+
+    G1              shift and go to state 3
+    G0              shift and go to state 4
+
+    instrucions                    shift and go to state 1
+    instrucion                     shift and go to state 2
+
+state 1
+
+    (0) S' -> instrucions .
+    (1) instrucions -> instrucions . instrucion
+    (3) instrucion -> . G1 parameters
+    (4) instrucion -> . G0 parameters
+
+    G1              shift and go to state 3
+    G0              shift and go to state 4
+
+    instrucion                     shift and go to state 5
+
+state 2
+
+    (2) instrucions -> instrucion . instrucion
+    (3) instrucion -> . G1 parameters
+    (4) instrucion -> . G0 parameters
+
+    G1              shift and go to state 3
+    G0              shift and go to state 4
+
+    instrucion                     shift and go to state 6
+
+state 3
+
+    (3) instrucion -> G1 . parameters
+    (5) parameters -> . SPEED POSX POSY POSE
+    (6) parameters -> . SPEED POSX POSY POSZ
+    (7) parameters -> . SPEED POSX POSY
+    (8) parameters -> . SPEED POSE
+    (9) parameters -> . POSX POSY POSE
+    (10) parameters -> . POSX POSY
+
+    SPEED           shift and go to state 8
+    POSX            shift and go to state 9
+
+    parameters                     shift and go to state 7
+
+state 4
+
+    (4) instrucion -> G0 . parameters
+    (5) parameters -> . SPEED POSX POSY POSE
+    (6) parameters -> . SPEED POSX POSY POSZ
+    (7) parameters -> . SPEED POSX POSY
+    (8) parameters -> . SPEED POSE
+    (9) parameters -> . POSX POSY POSE
+    (10) parameters -> . POSX POSY
+
+    SPEED           shift and go to state 8
+    POSX            shift and go to state 9
+
+    parameters                     shift and go to state 10
+
+state 5
+
+    (1) instrucions -> instrucions instrucion .
+
+    G1              reduce using rule 1 (instrucions -> instrucions instrucion .)
+    G0              reduce using rule 1 (instrucions -> instrucions instrucion .)
+    $end            reduce using rule 1 (instrucions -> instrucions instrucion .)
+
+
+state 6
+
+    (2) instrucions -> instrucion instrucion .
+
+    G1              reduce using rule 2 (instrucions -> instrucion instrucion .)
+    G0              reduce using rule 2 (instrucions -> instrucion instrucion .)
+    $end            reduce using rule 2 (instrucions -> instrucion instrucion .)
+
+
+state 7
+
+    (3) instrucion -> G1 parameters .
+
+    G1              reduce using rule 3 (instrucion -> G1 parameters .)
+    G0              reduce using rule 3 (instrucion -> G1 parameters .)
+    $end            reduce using rule 3 (instrucion -> G1 parameters .)
+
+
+state 8
+
+    (5) parameters -> SPEED . POSX POSY POSE
+    (6) parameters -> SPEED . POSX POSY POSZ
+    (7) parameters -> SPEED . POSX POSY
+    (8) parameters -> SPEED . POSE
+
+    POSX            shift and go to state 11
+    POSE            shift and go to state 12
+
+
+state 9
+
+    (9) parameters -> POSX . POSY POSE
+    (10) parameters -> POSX . POSY
+
+    POSY            shift and go to state 13
+
+
+state 10
+
+    (4) instrucion -> G0 parameters .
+
+    G1              reduce using rule 4 (instrucion -> G0 parameters .)
+    G0              reduce using rule 4 (instrucion -> G0 parameters .)
+    $end            reduce using rule 4 (instrucion -> G0 parameters .)
+
+
+state 11
+
+    (5) parameters -> SPEED POSX . POSY POSE
+    (6) parameters -> SPEED POSX . POSY POSZ
+    (7) parameters -> SPEED POSX . POSY
+
+    POSY            shift and go to state 14
+
+
+state 12
+
+    (8) parameters -> SPEED POSE .
+
+    G1              reduce using rule 8 (parameters -> SPEED POSE .)
+    G0              reduce using rule 8 (parameters -> SPEED POSE .)
+    $end            reduce using rule 8 (parameters -> SPEED POSE .)
+
+
+state 13
+
+    (9) parameters -> POSX POSY . POSE
+    (10) parameters -> POSX POSY .
+
+    POSE            shift and go to state 15
+    G1              reduce using rule 10 (parameters -> POSX POSY .)
+    G0              reduce using rule 10 (parameters -> POSX POSY .)
+    $end            reduce using rule 10 (parameters -> POSX POSY .)
+
+
+state 14
+
+    (5) parameters -> SPEED POSX POSY . POSE
+    (6) parameters -> SPEED POSX POSY . POSZ
+    (7) parameters -> SPEED POSX POSY .
+
+    POSE            shift and go to state 16
+    POSZ            shift and go to state 17
+    G1              reduce using rule 7 (parameters -> SPEED POSX POSY .)
+    G0              reduce using rule 7 (parameters -> SPEED POSX POSY .)
+    $end            reduce using rule 7 (parameters -> SPEED POSX POSY .)
+
+
+state 15
+
+    (9) parameters -> POSX POSY POSE .
+
+    G1              reduce using rule 9 (parameters -> POSX POSY POSE .)
+    G0              reduce using rule 9 (parameters -> POSX POSY POSE .)
+    $end            reduce using rule 9 (parameters -> POSX POSY POSE .)
+
+
+state 16
+
+    (5) parameters -> SPEED POSX POSY POSE .
+
+    G1              reduce using rule 5 (parameters -> SPEED POSX POSY POSE .)
+    G0              reduce using rule 5 (parameters -> SPEED POSX POSY POSE .)
+    $end            reduce using rule 5 (parameters -> SPEED POSX POSY POSE .)
+
+
+state 17
+
+    (6) parameters -> SPEED POSX POSY POSZ .
+
+    G1              reduce using rule 6 (parameters -> SPEED POSX POSY POSZ .)
+    G0              reduce using rule 6 (parameters -> SPEED POSX POSY POSZ .)
+    $end            reduce using rule 6 (parameters -> SPEED POSX POSY POSZ .)
+
